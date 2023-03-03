@@ -37,9 +37,9 @@ export class App extends Component {
             currentImageTag } = this.state;
     return (
       <div>
-        <header className="searchbar">
+        
           <Searchbar onSubmit={this.handleFormSubmit } />
-        </header>
+        
         <ImageGallery searchName={this.state.searchName} onOpenModal={this.onOpenModal} />
         {showModal&&
          (<Modal

@@ -1,6 +1,6 @@
-
+import {GalleryItem} from 'components/ImageGallery/ImageGallery.styled'
 export const ImageItem = ({ onClick, smallImg, tag, largeImage, }) => {
-     return (<li  className="gallery-item" onClick={onClick} >
+     return (<GalleryItem onClick={onClick} >
           <img src={smallImg} alt={tag} data-large={largeImage}  />
-     </li>)}
+     </GalleryItem>)}
      

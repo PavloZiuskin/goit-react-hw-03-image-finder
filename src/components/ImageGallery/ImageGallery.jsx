@@ -4,8 +4,8 @@ import { Component } from 'react';
 import { fetchApi } from 'components/FetchAPI/fetchApi';
 import { ImageItem } from 'components/ImageItem/ImageItem';
 import {Loader} from 'components/Loader/Loader'
-import { Button } from 'components/Pagination/ButtonText';
-
+import { Pagination } from 'components/Pagination/Pagination';
+import {GalleryList,Pleaser} from 'components/ImageGallery/ImageGallery.styled'
 export class ImageGallery extends Component {
     state = {
         searchValue: null,
@@ -90,11 +90,11 @@ export class ImageGallery extends Component {
             return(<Loader />)
         }
         if (status === 'idle') {
-            return(<p>Please entre search value</p>)
+            return(<Pleaser>Please entre search value</Pleaser>)
         }
         if (status === 'resolved' && valueArr.hits.length !== 0) {
             return (<div>
-                        <ul className="gallery">
+                        <GalleryList>
                                 {valueArr.hits.map(({id, tag, webformatURL,largeImageURL})=> {
                                     return (
                                             <ImageItem
@@ -106,8 +106,8 @@ export class ImageGallery extends Component {
                                             />
                                         )
                                 })}
-                        </ul>
-                        <Button onLoadMore={onLoadMore} page={page} total={totalPages} />
+                        </GalleryList>
+                        <Pagination onLoadMore={onLoadMore} page={page} total={totalPages} />
                     </div>)
         }
         

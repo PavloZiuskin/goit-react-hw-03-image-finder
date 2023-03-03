@@ -1,4 +1,6 @@
 import { Component } from "react";
+import { SearchForm, Header, IconButton } from "components/Searchbar/SearchBar.styled";
+import {FcSearch} from "react-icons/fc"
 
 export class Searchbar extends Component {
     state = { 
@@ -19,11 +21,11 @@ export class Searchbar extends Component {
         this.setState({searchName:''})
     }
     render() {
-        return (
-                <form className="form" onSubmit={this.handleSubmit}>
-                    <button type="submit" className="button">
-                    <span className="button-label">Search</span>
-                    </button>
+        return (<Header>
+                <SearchForm onSubmit={this.handleSubmit}>
+                    <IconButton>
+                    <FcSearch/>
+                    </IconButton>
 
                     <input
                         onChange={this.handleInput}
@@ -34,5 +36,5 @@ export class Searchbar extends Component {
                         autoFocus
                         placeholder="Search images and photos"
                         />
-                </form>)}
+                </SearchForm></Header>)}
 }
