@@ -1,5 +1,3 @@
-// export const ImageItem = () => {
-//     return (
-//          <img src="" alt="" />
-//         )
-// }
+
+export const ImageItem = ({smallImg, type}) => 
+     <img src={smallImg} alt={type} />

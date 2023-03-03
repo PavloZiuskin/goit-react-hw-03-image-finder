@@ -1,10 +1,13 @@
 import { Component } from 'react';
+
+
 import {fetchApi}from 'components/FetchAPI/fetchApi'
+import { ImageItem } from 'components/ImageItem/ImageItem';
 
 export class ImageGallery extends Component {
     state = {
         searchValue: null,
-        valueArr: [],
+        valueArr: null,
     }
     componentDidUpdate(prevProps, prevState) {
         const prevSearch = prevProps.searchName;
@@ -12,16 +15,26 @@ export class ImageGallery extends Component {
         if (prevSearch !== nextSearch) {
             fetchApi(nextSearch, 1)
                 .then(res => res.json())
-                .then(data => (
-                this.setState({valueArr: data.hits})))
+                .then(data => {
+                    this.setState({ valueArr: data })
+                }
+                )
        }
         
     }
 
     render(){
-    return (
-        <ul className="gallery">
-                <li className="gallery-item">
-                <p>{this.state.valueArr}</p></li></ul>)
+        return (
+        this.state.valueArr && <ul className="gallery">
+                {this.state.valueArr.hits.map(({id, type, webformatURL})=> {
+                    return (
+                        <li key={id} className="gallery-item">
+                            <ImageItem
+                                smallImg={webformatURL}
+                                type={type} />
+                        </li>)
+                })}
+            </ul>
+        )
     }
 } 

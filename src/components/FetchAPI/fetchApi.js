@@ -4,7 +4,7 @@ export async function fetchApi(searchValue, pageStore = 1) {
   const OPTIONS_SEARCH =
     'image_type=photo&orientation=horizontal&safesearch=true';
   const response = await fetch(
-    `${GET_API}key=${API_KEY}&q=${searchValue}&${OPTIONS_SEARCH}&per_page=40&page=${pageStore}`
+    `${GET_API}key=${API_KEY}&q=${searchValue}&${OPTIONS_SEARCH}&per_page=12&page=${pageStore}`
   );
 
   return response;
