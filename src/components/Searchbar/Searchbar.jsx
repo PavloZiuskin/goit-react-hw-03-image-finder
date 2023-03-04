@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Component } from "react";
 import { SearchForm, Header, IconButton } from "components/Searchbar/SearchBar.styled";
 import {FcSearch} from "react-icons/fc"
@@ -37,4 +38,7 @@ export class Searchbar extends Component {
                         placeholder="Search images and photos"
                         />
                 </SearchForm></Header>)}
+}
+Searchbar.propTypes = {
+    onSubmit:PropTypes.func
 }

@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { createPortal } from 'react-dom';
-import { FaRegWindowClose} from "react-icons/fa";
+import { FaRegWindowClose } from "react-icons/fa";
+import PropTypes from 'prop-types';
 import { ModalBackdrop, ModalContent,IconButton } from './Modal.styled'
 
 
@@ -38,4 +39,10 @@ export class Modal extends Component{
             </ModalBackdrop>),
             modalRoot);
     }
+}
+
+Modal.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    currentImageUrl: PropTypes.string.isRequired,
+    currentImageTag:PropTypes.string.isRequired
 }

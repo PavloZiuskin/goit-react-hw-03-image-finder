@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 
 import { fetchApi } from 'components/FetchAPI/fetchApi';
@@ -113,3 +114,8 @@ export class ImageGallery extends Component {
         
     }
 } 
+
+ImageGallery.propTypes = {
+    searchName: PropTypes.string.isRequired,
+    onOpenModal:PropTypes.func.isRequired
+}
