@@ -11,6 +11,5 @@ export const Loader = () => {
   secondaryColor="#4fa94d"
   strokeWidth={2}
   strokeWidthSecondary={2}
-
 />)
 }
