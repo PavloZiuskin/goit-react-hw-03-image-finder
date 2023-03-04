@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { fetchApi } from 'components/FetchAPI/fetchApi';
 import { ImageItem } from 'components/ImageItem/ImageItem';
-import {Loader} from 'components/Loader/Loader'
+import {Loader} from 'components/Loader/LoaderSpiner'
 import { Pagination } from 'components/Pagination/Pagination';
 import {GalleryList,Pleaser} from 'components/ImageGallery/ImageGallery.styled'
 export class ImageGallery extends Component {
