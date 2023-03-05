@@ -16,7 +16,8 @@ export class ImageGallery extends Component {
         error: '',
         page: 1,
         totalPages: null,
-        openModal:null,
+        openModal: null,
+        searchPicture: null,
     }
     componentDidUpdate(prevProps, prevState) {
         const prevSearch = prevProps.searchName;
@@ -36,8 +37,11 @@ export class ImageGallery extends Component {
                 }
                 )
                 .then(data => {
-                    this.setState({ valueArr: null })
-                    this.setState({ valueArr: data, status: 'resolved' })
+                    this.setState(({ valueArr, status }) => {
+                        return {
+                            valueArr: [...valueArr, ...data.hits],
+                            status: 'resolved'}
+                    })
                 }
             ).catch((error) => this.setState({ status: 'rejected', error }))
             return;
@@ -56,7 +60,8 @@ export class ImageGallery extends Component {
                 .then(data => {
                     this.setState(
                         {
-                            valueArr: data,
+                            valueArr: data.hits,
+                            searchPicture: data.total,
                             status: 'resolved',
                             searchValue: nextSearch,
                             totalPages: Number.parseInt(data.totalHits / 12),
@@ -81,7 +86,8 @@ export class ImageGallery extends Component {
             valueArr,
             page,
             totalPages,
-            openModal} = this.state;
+            openModal,
+            searchPicture} = this.state;
         const onLoadMore = this.handleClick;
 
         if (status === 'rejected') {
@@ -93,10 +99,10 @@ export class ImageGallery extends Component {
         if (status === 'idle') {
             return(<Pleaser>Please entre search value</Pleaser>)
         }
-        if (status === 'resolved' && valueArr.hits.length !== 0) {
+        if (status === 'resolved' && valueArr.length !== 0) {
             return (<div>
                         <GalleryList>
-                                {valueArr.hits.map(({id, tag, webformatURL,largeImageURL})=> {
+                                {valueArr.map(({id, tag, webformatURL,largeImageURL})=> {
                                     return (
                                             <ImageItem
                                                 onClick={openModal}
@@ -108,7 +114,7 @@ export class ImageGallery extends Component {
                                         )
                                 })}
                         </GalleryList>
-                        <Pagination onLoadMore={onLoadMore} page={page} total={totalPages} />
+                        {searchPicture>12 && <Pagination onLoadMore={onLoadMore} page={page} total={totalPages} />}
                     </div>)
         }
         

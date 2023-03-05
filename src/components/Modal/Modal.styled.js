@@ -33,6 +33,8 @@ export const IconButton = styled(NewButton)`
   left: 0;
   width: 40px;
   height: 40px;
+  border-radius: 4px;
+  background-color: transparent;
   svg {
     width: 40px;
     height: 40px;
