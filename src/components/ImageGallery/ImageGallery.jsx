@@ -26,10 +26,11 @@ export class ImageGallery extends Component {
         const nextPage = this.state.page;
         const openModal = this.props.onOpenModal;
 
-        if (nextPage !== prevPage) {
+        if (nextPage !== prevPage&&nextPage>1) {
             const { page, searchValue } = this.state;
             fetchApi(searchValue, page)
                 .then(res => {
+
                     if (!res.ok) {
                         return Promise.reject(res.status)
                     }
@@ -58,6 +59,7 @@ export class ImageGallery extends Component {
                 }
                 )
                 .then(data => {
+                    
                     this.setState(
                         {
                             valueArr: data.hits,
